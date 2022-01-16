@@ -13,18 +13,21 @@ function draw() {
 let jet = document.getElementById("jet");
 let board = document.getElementById("board");
 
+/* -------------------------------- left key -------------------------------- */
 addEventListener("keydown", (e) => {
   let left = parseInt(window.getComputedStyle(jet).getPropertyValue("left"));
   if (e.key == "ArrowLeft" && left > 0) {
     jet.style.left = left - 20 + "px";
   }
+
+  /* -------------------------------- right key ------------------------------- */
   /* -------------------- 460  =>  board width - jet width -------------------- */
   else if (e.key == "ArrowRight" && left <= 460) {
     jet.style.left = left + 20 + "px";
   }
 
+  /* ---------------------------  space key -------------------------- */
   if (e.key == "ArrowUp" || e.keyCode == 32) {
-  /* --------------------------- 32 is for space key -------------------------- */
     let bullet = document.createElement("div");
     bullet.classList.add("bullets");
     board.appendChild(bullet);
@@ -32,6 +35,7 @@ addEventListener("keydown", (e) => {
     let movebullet = setInterval(() => {
       let rocks = document.getElementsByClassName("rocks");
 
+      /* ------------------------------ repeat rocks ------------------------------ */
       for (let i = 0; i < rocks.length; i++) {
         let rock = rocks[i];
         if (rock != undefined) {
@@ -39,7 +43,7 @@ addEventListener("keydown", (e) => {
           let bulletbound = bullet.getBoundingClientRect();
 
   /*Condition to check whether the rock/alien and the bullet are at the same position..!*/
-  /*                 If so,then we have to destroy that rock                            */
+  /*                 If so then we have to destroy that rock                            */
 
           if (
             bulletbound.left >= rockbound.left &&
@@ -47,8 +51,11 @@ addEventListener("keydown", (e) => {
             bulletbound.top <= rockbound.top &&
             bulletbound.bottom <= rockbound.bottom
           ) {
-            rock.parentElement.removeChild(rock); //Just removing that particular rock;
-            //Scoreboard
+
+            /* --------------------------- to remove the rock --------------------------- */
+            rock.parentElement.removeChild(rock)
+
+            /* ------------------------------ score points ------------------------------ */
             document.getElementById("points").innerHTML =
               parseInt(document.getElementById("points").innerHTML) + 1;
           }
@@ -58,8 +65,8 @@ addEventListener("keydown", (e) => {
         window.getComputedStyle(bullet).getPropertyValue("bottom")
       );
 
-      //Stops the bullet from moving outside the gamebox
-      if (bulletbottom >= 500) {
+      /* ------------ Stops the bullet from moving outside the gamebox ------------ */
+      if (bulletbottom >= 400) {
         clearInterval(movebullet);
       }
 
@@ -105,3 +112,4 @@ let moverocks = setInterval(() => {
     }
   }
 }, 800);
+
