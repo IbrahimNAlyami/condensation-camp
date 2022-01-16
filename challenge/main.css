@@ -1,0 +1,42 @@
+body{
+  background-color: black;
+  font-family: 'Courier New', Courier, monospace;
+  color: aliceblue;
+}
+
+#playWindow{
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+#playArea{
+  position: relative;
+  width: 720px;
+  height: 576px;
+  border: black solid 1px;
+}
+
+#scoreContainer{
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  text-align: left;
+  font-size: 1.5em;
+  z-index: 30;
+}
+
+.score{
+  padding: 10px;
+}
+
+.sprite{
+  /* background-image: url("https://cdn-icons-png.flaticon.com/512/3504/3504873.png");
+  width: 49px;
+  height: 37px;
+  top: 400px;
+  left: 360px; */
+  position: absolute;
+  z-index: 10;
+}
+
